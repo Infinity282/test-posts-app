@@ -1,0 +1,41 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.postSection {
+    margin-bottom: 40px;
+}
+
+.postTitle {
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+
+.postAuthor {
+    display: flex;
+    gap: 10px;
+    color: var(--gray-color);
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+
+.postBody {
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+.commentsTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.commentsContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}

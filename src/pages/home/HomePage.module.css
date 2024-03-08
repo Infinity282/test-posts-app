@@ -1,0 +1,27 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    padding: 20px;
+}
+
+.mainTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header {
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.cardContainer {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.paginationContainer {
+    padding: 20px 0;
+}

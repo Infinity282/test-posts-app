@@ -5,20 +5,23 @@ import PostCard from "../../components/post-card/PostCard";
 import styles from './HomePage.module.css'
 import Pagination from "../../components/pagination/Pagination";
 import {PageResponse} from "../../interfaces/server";
+import {useSearchParams} from "react-router-dom";
 
 const HomePage = () => {
-    const [page, setPage] = useState<number>(1)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const page = searchParams.get('page') || '1'
+
     const [posts, setPosts] = useState<PageResponse<Post[]> | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const handleChangePage = (pageNumber: number) => {
-        setPage(pageNumber)
+        setSearchParams({ page: `${pageNumber}` })
     }
 
     useEffect(() => {
         const fetchAllPosts = async () => {
             setIsLoading(true)
-            const response = await PostService.getAllPosts(page)
+            const response = await PostService.getAllPosts(parseInt(page))
             if (response) {
                 setPosts(response)
                 setIsLoading(false)
@@ -44,7 +47,7 @@ const HomePage = () => {
                 )}
             </div>
             <div className={styles.paginationContainer}>
-                <Pagination currentPage={page} totalCount={posts?.totalCount || 0} pageLimit={10} onPageChange={handleChangePage} />
+                <Pagination currentPage={parseInt(page)} totalCount={posts?.totalCount || 0} pageLimit={10} onPageChange={handleChangePage} />
             </div>
         </main>
     )}

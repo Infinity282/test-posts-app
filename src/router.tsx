@@ -13,4 +13,5 @@ export const router = createBrowserRouter([
         path: "posts/:postId",
         element: <PostPage />,
     }
-])
+], {basename: process.env.IS_DEPLOY === 'true' ? '/test-posts-app/' : '/'})
+

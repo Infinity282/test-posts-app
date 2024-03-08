@@ -1,9 +1,9 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createHashRouter} from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import PostPage from "./pages/post/PostPage";
 import ErrorPage from "./pages/ErrorPage";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
     {
         path: "/",
         element: <HomePage />,
@@ -13,5 +13,5 @@ export const router = createBrowserRouter([
         path: "posts/:postId",
         element: <PostPage />,
     }
-], {basename: process.env.IS_DEPLOY === 'true' ? '/test-posts-app/' : '/'})
+])
 

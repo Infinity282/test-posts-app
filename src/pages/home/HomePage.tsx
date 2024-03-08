@@ -9,7 +9,7 @@ import {useSearchParams} from "react-router-dom";
 
 const HomePage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    const page = searchParams.get('page') || '1'
+    const page = parseInt(searchParams.get('page') || '1')
 
     const [posts, setPosts] = useState<PageResponse<Post[]> | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -21,7 +21,7 @@ const HomePage = () => {
     useEffect(() => {
         const fetchAllPosts = async () => {
             setIsLoading(true)
-            const response = await PostService.getAllPosts(parseInt(page))
+            const response = await PostService.getAllPosts(page)
             if (response) {
                 setPosts(response)
                 setIsLoading(false)
@@ -47,7 +47,7 @@ const HomePage = () => {
                 )}
             </div>
             <div className={styles.paginationContainer}>
-                <Pagination currentPage={parseInt(page)} totalCount={posts?.totalCount || 0} pageLimit={10} onPageChange={handleChangePage} />
+                <Pagination currentPage={page} totalCount={posts?.totalCount || 0} pageLimit={10} onPageChange={handleChangePage} />
             </div>
         </main>
     )}

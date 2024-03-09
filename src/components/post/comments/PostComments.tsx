@@ -9,7 +9,6 @@ type PostCommentsProps = {
 }
 
 const PostComments = ({postId}: PostCommentsProps) => {
-
     const [comments, setComments] = useState<PostComment[]>([])
     const [isCommentsLoading, setIsCommentsLoading] = useState<boolean>(false)
 

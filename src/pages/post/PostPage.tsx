@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {Post, PostComment} from "../../interfaces/posts";
+import {Post} from "../../interfaces/posts";
 import {PostService} from "../../services/PostService";
 import {useParams} from "react-router-dom";
 import styles from  './PostPage.module.css'
-import CommentCard from "../../components/comment-card/CommentCard";
+import PostComments from "../../components/post/comments/PostComments";
 
 const PostPage = () => {
     const { postId } = useParams()
 
     const [post, setPost] = useState<Post | null>(null)
-    const [comments, setComments] = useState<PostComment[]>([])
     const [isPostsLoading, setIsPostsLoading] = useState<boolean>(false)
-    const [isCommentsLoading, setIsCommentsLoading] = useState<boolean>(false)
     
     useEffect(() => {
         const fetchPostInfo = async () => {
@@ -28,21 +26,6 @@ const PostPage = () => {
             }
         }
         fetchPostInfo()
-
-        const fetchComments = async () => {
-            if (!postId) {
-                return
-            }
-            setIsCommentsLoading(true)
-            const response = await PostService.getPostComments(parseInt(postId))
-            if (response) {
-                setComments(response)
-                setIsCommentsLoading(false)
-            } else {
-                setComments([])
-            }
-        }
-        fetchComments()
     }, [postId])
 
     return (
@@ -64,18 +47,7 @@ const PostPage = () => {
                 )}
             </section>
             <section>
-                <h2 className={styles.commentsTitle}>Комментарии</h2>
-                {isCommentsLoading ? (
-                    <p>Загрузка...</p>
-                ) : (
-                    <div className={styles.commentsContainer}>
-                        {comments.map((comment) => {
-                            return (
-                                <CommentCard key={comment.id} data={comment}/>
-                            )
-                        })}
-                    </div>
-                )}
+                <PostComments postId={postId} />
             </section>
         </main>
     );

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {PostService} from "../../services/PostService";
 import {Post} from "../../interfaces/posts";
-import PostCard from "../../components/post-card/PostCard";
+import PostCard from "../../components/post/card/PostCard";
 import styles from './HomePage.module.css'
 import Pagination from "../../components/pagination/Pagination";
 import {PageResponse} from "../../interfaces/server";

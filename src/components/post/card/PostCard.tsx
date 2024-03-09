@@ -1,5 +1,5 @@
 import React from 'react';
-import {Post} from "../../interfaces/posts";
+import {Post} from "../../../interfaces/posts";
 import styles from './PostCard.module.css'
 import {Link} from "react-router-dom";
 

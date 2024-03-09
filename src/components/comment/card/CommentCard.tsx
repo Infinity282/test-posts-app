@@ -1,5 +1,5 @@
 import React from 'react';
-import {PostComment} from "../../interfaces/posts";
+import {PostComment} from "../../../interfaces/posts";
 import styles from './CommentCard.module.css'
 
 type CommentCardProps = {
